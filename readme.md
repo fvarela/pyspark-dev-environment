@@ -21,6 +21,9 @@ This setup allows you to develop and run PySpark applications in a containerized
 ├── app/
 │   ├── delta_table_poc.py
 │   └── spark_test_poc.py
+├── tests/
+│   ├── test_delta_table_poc.py
+│   └── test_spark_test_poc.py
 ├── .dockerignore
 ├── .gitignore
 ├── Dockerfile
@@ -75,6 +78,34 @@ The project includes two test scripts to verify the functionality of the PySpark
    ```
 
 These scripts serve as both examples of how to use PySpark in this environment and as functional tests to ensure your setup is working correctly.
+
+## Running Tests
+
+This project includes unit tests to ensure the correctness of the PySpark and Delta Lake functionality. The tests are located in the `tests/` directory.
+
+To run the tests:
+
+1. Ensure you're in the container's shell (you should be in the `/workspace` directory).
+2. Run the following commands:
+
+   For testing the Spark functionality:
+   ```
+   python3 -m unittest tests.test_spark_test_poc
+   ```
+
+   For testing the Delta Lake functionality:
+   ```
+   python3 -m unittest tests.test_delta_table_poc
+   ```
+
+   To run all tests at once:
+   ```
+   python3 -m unittest discover tests
+   ```
+
+These tests will validate the core functionality of your PySpark and Delta Lake setup within the container. If all tests pass, your environment is correctly set up and functioning as expected.
+
+If you encounter any test failures, check the error messages for details on what went wrong. Common issues might include mismatched Spark or Delta Lake versions, incorrect configurations, or problems with the test data.
 
 ## Customization
 
