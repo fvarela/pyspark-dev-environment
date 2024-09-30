@@ -1,12 +1,12 @@
 services:
   spark:
-    image: vida-spark:latest
+    image: dev-spark:latest
     build:
       context: .
       dockerfile: Dockerfile
       tags:
-        - vida-spark:latest
-    container_name: vida-spark-container
+        - vdev-spark:latest
+    container_name: dev-spark-container
     user: root
     stdin_open: true
     tty: true
