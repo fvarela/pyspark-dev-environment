@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      tags:
-        - vdev-spark:latest
     container_name: dev-spark-container
     user: root
     stdin_open: true
