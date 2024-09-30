@@ -21,6 +21,11 @@ def read_delta_table(spark, path):
     return spark.read.format("delta").load(path)
 
 def main():
+    """
+    This function creates a Spark session, generates a sample DataFrame,
+    writes it to a Delta table, reads it back, and displays the results.
+    """
+
     spark = create_spark_session()
     
     data = create_sample_dataframe(spark)

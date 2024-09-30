@@ -13,6 +13,10 @@ def calculate_sums(df):
     return result[0], result[1]  # sum of numbers, sum of squares
 
 def main():
+    """
+    This function creates a Spark session, generates a sample DataFrame,
+    calculates the sum of numbers and squares, and displays the results.
+    """
     spark = create_spark_session()
     
     print("Spark Version:", spark.version)

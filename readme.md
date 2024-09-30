@@ -20,10 +20,8 @@ This setup allows you to develop and run PySpark applications in a containerized
 │   └── devcontainer.json
 ├── app/
 │   ├── delta_table_poc.py
-│   └── spark_test_poc.py
-├── tests/
-│   ├── test_delta_table_poc.py
-│   └── test_spark_test_poc.py
+│   ├── spark_poc.py
+│   └── udf_poc.py
 ├── .dockerignore
 ├── .gitignore
 ├── Dockerfile
@@ -61,7 +59,7 @@ Once the container is running and VS Code is connected:
 
 ## Test Scripts
 
-The project includes two test scripts to verify the functionality of the PySpark environment:
+The project includes three test scripts to verify the functionality of the PySpark environment:
 
 1. `app/delta_table_poc.py`: This script demonstrates the usage of Delta Lake with PySpark. It creates a Delta table, performs some operations, and showcases Delta Lake features.
 
@@ -77,35 +75,21 @@ The project includes two test scripts to verify the functionality of the PySpark
    python3 app/spark_test_poc.py
    ```
 
-These scripts serve as both examples of how to use PySpark in this environment and as functional tests to ensure your setup is working correctly.
+3. `app/udf_poc.py`: This script demonstrates the use of User Defined Functions (UDFs) in PySpark. It creates a sample dataset, applies a UDF to process categories, and showcases group-by operations with UDFs.
 
-## Running Tests
+   Key features:
+   - Generates dummy data with random categories
+   - Defines a UDF to process category data
+   - Applies the UDF in a group-by aggregation
 
-This project includes unit tests to ensure the correctness of the PySpark and Delta Lake functionality. The tests are located in the `tests/` directory.
-
-To run the tests:
-
-1. Ensure you're in the container's shell (you should be in the `/workspace` directory).
-2. Run the following commands:
-
-   For testing the Spark functionality:
+   To run this script:
    ```
-   python3 -m unittest tests.test_spark_test_poc
+   python3 app/udf_poc.py
    ```
 
-   For testing the Delta Lake functionality:
-   ```
-   python3 -m unittest tests.test_delta_table_poc
-   ```
+   This script is particularly useful for understanding how to create and apply UDFs in PySpark, as well as how to work with structured data in a distributed environment.
 
-   To run all tests at once:
-   ```
-   python3 -m unittest discover tests
-   ```
-
-These tests will validate the core functionality of your PySpark and Delta Lake setup within the container. If all tests pass, your environment is correctly set up and functioning as expected.
-
-If you encounter any test failures, check the error messages for details on what went wrong. Common issues might include mismatched Spark or Delta Lake versions, incorrect configurations, or problems with the test data.
+These scripts serve as both examples of how to use PySpark in this environment and as functional tests to ensure your setup is working correctly. They cover different aspects of PySpark functionality, from basic operations to more advanced features like Delta Lake and User Defined Functions.
 
 ## Customization
 
@@ -149,5 +133,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-
