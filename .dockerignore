@@ -1,3 +1,5 @@
 Dockerfile
 .git
 docker-compose.yml
+.venv-spark
+.venv-databricks

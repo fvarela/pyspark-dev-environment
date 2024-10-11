@@ -1,110 +1,38 @@
-# PySpark Local Development Environment
+# PySpark - Databricks Local Development Environment
 
-This project provides a proof-of-concept setup for creating a local development environment with PySpark using Docker and Visual Studio Code's Remote - Containers extension.
+This project provides a local development environment for working with PySpark and Databricks. It offers two development environments: one with a local Spark setup and another with Databricks Connect.
 
-## Project Overview
+## Development Environments
 
-This setup allows you to develop and run PySpark applications in a containerized environment, ensuring consistency across different development machines and simplifying the setup process.
+The project includes two separate Python virtual environments:
 
-## Prerequisites
+1. Local Spark Environment: `~/.virtualenvs/.venv-spark`
+2. Databricks Connect Environment: `~/.virtualenvs/.venv-databricks`
 
-- [Docker](https://www.docker.com/products/docker-desktop)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension for VS Code
+## Databricks Configuration
 
-## Project Structure
+To use the Databricks Connect environment, you need to create a `databricks-cli-config` file using the following template:
 
 ```
-.
-├── .devcontainer/
-│   └── devcontainer.json
-├── app/
-│   ├── delta_table_poc.py
-│   ├── spark_poc.py
-│   └── udf_poc.py
-├── .dockerignore
-├── .gitignore
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
+[DEFAULT]
+host = https://...
+token = ...
+cluster_id = ...
 ```
 
-## Setup Instructions
+Replace the ellipses (...) with your specific Databricks information.
 
-1. Clone this repository to your local machine.
-2. Ensure Docker is running on your system.
-3. Open the project folder in Visual Studio Code.
-4. When prompted, click "Reopen in Container" or run the "Remote-Containers: Reopen in Container" command from the command palette (F1).
+## Visual Studio Code Setup
 
-VS Code will build the Docker image and start the container. This process may take a few minutes the first time.
+This project is configured to be used with Visual Studio Code inside a Docker container. The necessary configuration files (Dockerfile, docker-compose, and .devcontainer) are provided.
 
-## Usage
+To set up the development environment:
 
-Once the container is running and VS Code is connected:
-
-1. You'll be in the `/workspace` directory inside the container, which is mapped to your project root.
-2. Open a new terminal in VS Code (Terminal -> New Terminal) to interact with the container's shell.
-3. You can now run PySpark scripts or start a PySpark shell:
-
-   ```
-   pyspark
-   ```
-
-4. To run a Python script that uses PySpark:
-
-   ```
-   python3 your_script.py
-   ```
-
-## Test Scripts
-
-The project includes three test scripts to verify the functionality of the PySpark environment:
-
-1. `app/delta_table_poc.py`: This script demonstrates the usage of Delta Lake with PySpark. It creates a Delta table, performs some operations, and showcases Delta Lake features.
-
-   To run this script:
-   ```
-   python3 app/delta_table_poc.py
-   ```
-
-2. `app/spark_test_poc.py`: This script provides a basic test of the PySpark functionality. It creates a simple Spark DataFrame and performs some operations to ensure that PySpark is working correctly.
-
-   To run this script:
-   ```
-   python3 app/spark_test_poc.py
-   ```
-
-3. `app/udf_poc.py`: This script demonstrates the use of User Defined Functions (UDFs) in PySpark. It creates a sample dataset, applies a UDF to process categories, and showcases group-by operations with UDFs.
-
-   Key features:
-   - Generates dummy data with random categories
-   - Defines a UDF to process category data
-   - Applies the UDF in a group-by aggregation
-
-   To run this script:
-   ```
-   python3 app/udf_poc.py
-   ```
-
-   This script is particularly useful for understanding how to create and apply UDFs in PySpark, as well as how to work with structured data in a distributed environment.
-
-These scripts serve as both examples of how to use PySpark in this environment and as functional tests to ensure your setup is working correctly. They cover different aspects of PySpark functionality, from basic operations to more advanced features like Delta Lake and User Defined Functions.
-
-## Customization
-
-- To add more Python packages, update the `requirements.txt` file and rebuild the container.
-- Modify the `Dockerfile` or `docker-compose.yml` to add more tools or change the configuration.
-
-## Troubleshooting
-
-- If you encounter issues with the container not starting, try rebuilding it using the "Remote-Containers: Rebuild Container" command in VS Code.
-- Ensure your Docker daemon is running before attempting to start the container.
-- If the test scripts fail, check that all required dependencies are correctly installed and that the PySpark configuration is correct.
-
-## Contributing
-
-Feel free to submit issues or pull requests if you have suggestions for improvements or encounter any problems.
+1. Open the project in Visual Studio Code.
+2. Use the "Remote-Containers: Open Folder in Container" command to open the project inside the container.
+3. Once inside the container, select the desired Python interpreter from the list:
+   - For local Spark: `~/.virtualenvs/.venv-spark`
+   - For Databricks Connect: `~/.virtualenvs/.venv-databricks`
 
 ## License
 

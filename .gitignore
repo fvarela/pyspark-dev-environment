@@ -1,2 +1,5 @@
 *__pycache__
 tmp/
+.venv-spark/
+.venv-databricks/
+databricks-cli-config

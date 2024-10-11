@@ -7,7 +7,11 @@
     "workspaceFolder": "/workspace",
     "customizations": {
       "vscode": {
-        "extensions": ["ms-python.python"]
+        "extensions": ["ms-python.python"],
+        "settings": {
+          "python.venvPath": "/.virtualenvs/",
+          "python.defaultInterpreterPath": "/.virtualenvs/.venv-spark/bin/python"
+        }
       }
     }
   }
