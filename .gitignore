@@ -3,3 +3,4 @@ tmp/
 .venv-spark/
 .venv-databricks/
 databricks-cli-config
+combined_to_bronze/
