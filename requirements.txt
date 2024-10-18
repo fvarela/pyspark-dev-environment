@@ -2,3 +2,13 @@
 # delta-spark==3.0.0
 pyspark==3.4.1
 delta-spark==2.4.0
+typer
+questionary
+rich
+azure-storage-blob
+azure-storage-queue
+azure-storage-file-datalake
+zipfile36
+deltalake
+polars
+simple-salesforce

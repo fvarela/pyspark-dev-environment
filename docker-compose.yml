@@ -11,3 +11,6 @@ services:
     command: /bin/bash
     volumes:
       - ./:/workspace
+    env_file:
+      - .env
+    entrypoint: /bin/bash -c "/workspace/config_databricks.sh && /workspace/config_git.sh && exec /bin/bash"

@@ -1,14 +1,8 @@
-from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
+import os
+from aux_files.get_spark import get_spark
 
-def get_spark() -> SparkSession:
-  try:
-    from databricks.connect import DatabricksSession
-    print("Databricks environment detected")
-    return DatabricksSession.builder.getOrCreate()
-  except:
-    print("Local environment detected")
-    return SparkSession.builder.getOrCreate()
+
 
 def create_sample_dataframe(spark, start=1, end=6):
     df = spark.range(start, end).toDF("number")
@@ -23,8 +17,11 @@ def main():
     This function creates a Spark session, generates a sample DataFrame,
     calculates the sum of numbers and squares, and displays the results.
     """
-    spark = get_spark()
+    storage_account_name = os.getenv('STORAGE_ACCOUNT_NAME', "salakefrandev")
+    storage_account_key = os.getenv('STORAGE_ACCOUNT_KEY')
+    spark = get_spark(storage_account_name=storage_account_name, storage_account_key=storage_account_key)    
     
+
     print("Spark Version:", spark.version)
     
     df = create_sample_dataframe(spark)
